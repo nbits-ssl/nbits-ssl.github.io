@@ -7,13 +7,14 @@ const CHAT_UPDATEDAT_INDEX = 'updatedAtIndex';
 const CHAT_CREATEDAT_INDEX = 'createdAtIndex';
 const DEFAULT_MODEL = 'gemini-2.0-flash';
 const DEFAULT_STREAMING_SPEED = 12;
+const DEFAULT_STREAMING_OUTPUT = false;
 const DEFAULT_TEMPERATURE = 0.5;
 const DEFAULT_MAX_TOKENS = 4000;
 const DEFAULT_TOP_K = 40;
 const DEFAULT_TOP_P = 0.95;
 const DEFAULT_FONT_FAMILY = '-apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif'; // デフォルトフォント
 const DEFAULT_COMPRESSION_PROMPT = 'これまでのやり取りで起こった事実関係とその時の登場人物の振る舞いを文字数を気にしないでできるかぎり詳細にまとめて。要約データとして扱うので、既存のフォーマットは無視。Markdownにもせずに、小説の「あらすじ」として通用するような形で。応答の返事は要らないからすぐに出力開始して。';
-const DEFAULT_KEEP_FIRST_MESSAGES = 10;
+const DEFAULT_KEEP_FIRST_MESSAGES = 5;
 const DEFAULT_KEEP_LAST_MESSAGES = 20;
 const CHAT_TITLE_LENGTH = 15;
 const TEXTAREA_MAX_HEIGHT = 120;
@@ -281,7 +282,7 @@ const state = {
     settings: { // デフォルト値
         apiKey: '',
         modelName: DEFAULT_MODEL,
-        streamingOutput: true,
+        streamingOutput: DEFAULT_STREAMING_OUTPUT,
         streamingSpeed: DEFAULT_STREAMING_SPEED,
         systemPrompt: '', // デフォルトのシステムプロンプト
         temperature: null,
@@ -4501,8 +4502,8 @@ const appLogic = {
                 state.settings = { // 初期デフォルト値に戻す
                     apiKey: '',
                     modelName: DEFAULT_MODEL,
-                    streamingOutput: true,
-                    streamingSpeed: DEFAULT_STREAMING_SPEED,
+                            streamingOutput: DEFAULT_STREAMING_OUTPUT,
+        streamingSpeed: DEFAULT_STREAMING_SPEED,
                     systemPrompt: '', // デフォルトSPもリセット
                     temperature: null,
                     maxTokens: null,
